@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  frontend:
+    external:
+      name: reverse-proxy
+
+services:
+  kuma:
+    image: louislam/uptime-kuma:1
+    volumes:
+      - ./data:/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=reverse-proxy"
+      # https
+      - "traefik.http.routers.someservice.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.someservice.entrypoints=websecure"
+      - "traefik.http.routers.someservice.tls=true"
+      - "traefik.http.routers.someservice.tls.certresolver=letsencrypt"
+    # add the network to the service configuration
+    networks:
+      - frontend
