@@ -12,3 +12,5 @@ stop:
 
 clear: down
 	@./scripts/clear.sh
+
+restart: down start
