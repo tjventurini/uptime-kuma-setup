@@ -29,3 +29,13 @@ make down
 make stop # alias for `make down`
 make clear
 ```
+
+## Troubleshooting 💣
+
+### Service not reachable for Uptime Kuma
+
+If your Uptime Kuma instance can't reach a service that you know is online, you might need to clear the network cache on your server.
+
+```bash
+sudo resolvectl flush-caches
+```
