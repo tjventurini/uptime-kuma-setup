@@ -14,3 +14,12 @@ clear: down
 	@./scripts/clear.sh
 
 restart: down start
+
+logs:
+	@docker compose logs
+
+tail:
+	@docker compose logs -f
+
+build:
+	@docker compose build --no-cache

@@ -1,16 +1,14 @@
-version: '3.8'
-
 networks:
   frontend:
-    external:
-      name: reverse-proxy
+    external: true
+    name: reverse-proxy
 
 services:
   kuma:
-    image: louislam/uptime-kuma:1
+    image: louislam/uptime-kuma:latest
     restart: always
     volumes:
-      - ./data:/app/data
+      - data:/app/data
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=reverse-proxy"
@@ -22,3 +20,6 @@ services:
     # add the network to the service configuration
     networks:
       - frontend
+
+volumes:
+  data:
