@@ -23,3 +23,8 @@ tail:
 
 build:
 	@docker compose build --no-cache
+
+ps:
+	@docker compose ps
+
+status: ps
